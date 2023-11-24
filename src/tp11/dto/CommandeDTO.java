@@ -3,15 +3,58 @@ import java.util.List;
 
 
 /********************************************************
- * Les DTO sont des objets simplifiés représentant l'état
- * (les attributs) d'un objet complexe, dont on a retiré
- * toute logique métier. De ce fait, les DTO deviennent
- * des objets plus faciles à sérializer et plus légers
+ * Les DTO sont des objets simplifiï¿½s reprï¿½sentant l'ï¿½tat
+ * (les attributs) d'un objet complexe, dont on a retirï¿½
+ * toute logique mï¿½tier. De ce fait, les DTO deviennent
+ * des objets plus faciles ï¿½ sï¿½rializer et plus lï¿½gers
  **********************************************************/
 public class CommandeDTO implements TransferableObject{
     private List<LivreDTO> livres;
     private UtilisateurDTO utilisateur ;
-    // A vous de définir les attributs, le constructeur et les getters/setters
-    // Pour vous aider, je vous ai laissé 2 attributs utilisant les autres DTO. A vous de faire le reste
-    // n'oubliez pas : aucune logique métier ici !!
+    private double fraisDePort;
+    private String status;
+    private int id;
+    // A vous de dï¿½finir les attributs, le constructeur et les getters/setters
+    // Pour vous aider, je vous ai laissï¿½ 2 attributs utilisant les autres DTO. A vous de faire le reste
+    // n'oubliez pas : aucune logique mï¿½tier ici !!
+    // Getters et Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public UtilisateurDTO getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(UtilisateurDTO utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getFraisDePort() {
+        return fraisDePort;
+    }
+
+    public void setFraisDePort(double fraisDePort) {
+        this.fraisDePort = fraisDePort;
+    }
+
+    public List<LivreDTO> getLivres() {
+        return livres;
+    }
+
+    public void setLivres(List<LivreDTO> livres) {
+        this.livres = livres;
+    }
 }

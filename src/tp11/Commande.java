@@ -23,8 +23,51 @@ public class Commande implements Entity {
     private CommandeState currentState = null ; // état actuel de la commande
     private double fraisDePort ;
 
-    // TODO à vous d'écrire les getters/setters, le(s) constructeur(s) et tout ce dont vous aurez besoin notamment pour le lazy loading
 
+    // TODO à vous d'écrire les getters/setters, le(s) constructeur(s) et tout ce dont vous aurez besoin notamment pour le lazy loading
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getFraisDePort() {
+        return fraisDePort;
+    }
+
+    public void setFraisDePort(double fraisDePort) {
+        this.fraisDePort = fraisDePort;
+    }
+
+    public CommandeState getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(CommandeState currentState) {
+        this.currentState = currentState;
+    }
+
+    public Commande() {
+        this.status = "Nouvelle";
+    }
 
     // Attributs liés au LazyLoading
     private List<Integer> livreIds = new ArrayList<>();
@@ -37,10 +80,20 @@ public class Commande implements Entity {
      */
     public void addLivreId(int livreId) {
         // TODO à coder
+        livreIds.add(livreId);
     }
     public List<Livre> getLivres(LivreRepository repo) {
         // TODO à coder
-        return null;
+        if (livres == null) {
+            livres = new ArrayList<>();
+            for (Integer id : livreIds) {
+                Livre livre = repo.findById(id);
+                if (livre != null) {
+                    livres.add(livre);
+                }
+            }
+        }
+        return new ArrayList<>(livres);
     }
     // Fin Lazyloading
 
@@ -49,7 +102,7 @@ public class Commande implements Entity {
     public double calculerFraisDePort(FraisPortStrategy strategy)
     {
         // TODO à coder
-         return 0 ;
+        return strategy.calculerFraisPort();
     }
 
     // Pattern State
@@ -59,6 +112,7 @@ public class Commande implements Entity {
     }
     public CommandeDTO toDTO() {
         // TODO à coder
-        return null;
-    }
+       return null;
+        }
+
 }
