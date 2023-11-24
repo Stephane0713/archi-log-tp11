@@ -109,10 +109,14 @@ public class Commande implements Entity {
     public void etatSuivant()
     {
         // TODO à coder
+        if (currentState != null) {
+            currentState.next(this);
+        }
     }
     public CommandeDTO toDTO() {
         // TODO à coder
-       return null;
+        CommandeDTO dto = new CommandeDTO();
+       return dto;
         }
 
 }
