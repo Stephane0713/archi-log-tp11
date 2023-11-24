@@ -2,6 +2,8 @@ package tp11.strategy;
 
 import tp11.Commande;
 import tp11.dto.LivreDTO;
+import tp11.Livre;
+import tp11.repository.LivreRepository;
 
 import java.util.List;
 
@@ -9,10 +11,13 @@ import java.util.List;
  * Stratégie correspondant au mode d'expédition : Colissimo
  */
 public class FraisPortColissimoStrategy implements FraisPortStrategy {
-    // TODO à vous de déterminer s'il y a besoin d'attributs
 
-    public FraisPortColissimoStrategy(Commande contexte) {
-        // TODO
+    private Commande contexte;
+    private LivreRepository livreRepository;
+
+    public FraisPortColissimoStrategy(Commande contexte , LivreRepository livreRepository ) {
+        this.contexte = contexte;
+        this.livreRepository = livreRepository;
     }
 
     /***
@@ -23,7 +28,19 @@ public class FraisPortColissimoStrategy implements FraisPortStrategy {
      */
     @Override
     public double calculerFraisPort() {
-        // TODO Calcul basé sur le poids des livres
-        return 0 ;
+        double poidsTotal = 0;
+
+        List<Livre> livres = contexte.getLivres(livreRepository);
+        for (Livre livre : livres) {
+            poidsTotal += livre.getPoids();
+        }
+
+        if (poidsTotal <= 1) {
+            return 3;
+        } else if (poidsTotal <= 3) {
+            return 5;
+        } else {
+            return 15;
+        }
     }
 }
