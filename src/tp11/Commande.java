@@ -115,7 +115,7 @@ public class Commande implements Entity {
     }
     public CommandeDTO toDTO() {
         // TODO à coder
-        CommandeDTO dto = new CommandeDTO();
+        CommandeDTO dto = new CommandeDTO(this);
        return dto;
         }
 

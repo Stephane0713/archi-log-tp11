@@ -1,4 +1,8 @@
 package tp11.dto;
+import tp11.Commande;
+import tp11.Livre;
+import tp11.repository.LivreRepository;
+
 import java.util.List;
 
 
@@ -17,6 +21,13 @@ public class CommandeDTO implements TransferableObject{
     // A vous de d�finir les attributs, le constructeur et les getters/setters
     // Pour vous aider, je vous ai laiss� 2 attributs utilisant les autres DTO. A vous de faire le reste
     // n'oubliez pas : aucune logique m�tier ici !!
+    public CommandeDTO(Commande commande, LivreRepository livreRepository) {
+        this.id = commande.getId();
+        this.fraisDePort = commande.getFraisDePort();
+        this.utilisateur = commande.getUtilisateur().toDTO();
+        this.livres = commande.getLivres(livreRepository).stream().map< Livre >((livre)->livre.toDTO());
+
+    }
     // Getters et Setters
     public int getId() {
         return id;
