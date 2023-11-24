@@ -1,5 +1,7 @@
 package tp11.dto;
 
+import tp11.Livre;
+
 /********************************************************
  * Les DTO sont des objets simplifiés représentant l'état
  * (les attributs) d'un objet complexe, dont on a retiré
@@ -7,8 +9,19 @@ package tp11.dto;
  * des objets plus faciles à sérializer et plus légers
  **********************************************************/
 public class LivreDTO  implements TransferableObject{
-    // A vous de définir les attributs, le constructeur et les getters/setters
-    // n'oubliez pas : aucune logique métier ici !!
+    private String titre;
+
+    public LivreDTO(Livre livre) {
+        this.titre = livre.getTitre();
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
 }
 
 

@@ -2,6 +2,8 @@ package tp11.repository;
 
 import tp11.Livre;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -12,7 +14,26 @@ import tp11.Livre;
 
 
 public class LivreRepositoryImpl implements LivreRepository {
-    // TODO à vous de définir les attributs nécéessaires (comment allez-vous gérer la collection de livres ?)
+    private final List<Livre> livres;
 
-    // TODO écrivez le contenu de cette classe qui implémente LivreRepository
+    public LivreRepositoryImpl() {
+          this.livres = new ArrayList<Livre>();
+    }
+
+    @Override
+    public Livre findById(int id) {
+        return this.livres.stream().filter(livre -> id == livre.getId())
+                .findAny()
+                .orElse(null);
+    }
+
+    @Override
+    public List<Livre> findAll() {
+        return livres;
+    }
+
+    @Override
+    public void save(Livre livre) {
+        livres.add(livre);
+    }
 }
