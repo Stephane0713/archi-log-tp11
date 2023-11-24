@@ -49,7 +49,6 @@ public class Livre implements Entity {
     }
 
     public LivreDTO toDTO() {
-        // TODO à écrire
-        return null ;
+        return new LivreDTO(this);
     }
 }
