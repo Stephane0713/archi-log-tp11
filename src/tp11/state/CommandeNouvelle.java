@@ -11,7 +11,6 @@ public class CommandeNouvelle implements CommandeState {
 
     @Override
     public void next(Commande commande) {
-        commande.setStatus("Commande créée");
         commande.setCurrentState(new CommandeEnCours());
     }
 }
