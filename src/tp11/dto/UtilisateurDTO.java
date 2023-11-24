@@ -2,12 +2,47 @@ package tp11.dto;
 
 
 /********************************************************
- * Les DTO sont des objets simplifiés représentant l'état
- * (les attributs) d'un objet complexe, dont on a retiré
- * toute logique métier. De ce fait, les DTO deviennent
- * des objets plus faciles à sérializer et plus légers
+ * Les DTO sont des objets simplifiï¿½s reprï¿½sentant l'ï¿½tat
+ * (les attributs) d'un objet complexe, dont on a retirï¿½
+ * toute logique mï¿½tier. De ce fait, les DTO deviennent
+ * des objets plus faciles ï¿½ sï¿½rializer et plus lï¿½gers
  **********************************************************/
 public class UtilisateurDTO  implements TransferableObject{
-    // A vous de définir les attributs, le constructeur et les getters/setters
-    // n'oubliez pas : aucune logique métier ici !!
+    // A vous de dï¿½finir les attributs, le constructeur et les getters/setters
+    // n'oubliez pas : aucune logique mï¿½tier ici !!
+
+    private int id;
+    private String nom;
+    private String email;
+
+
+    public UtilisateurDTO(int id, String nom, String email){
+        this.id = id;
+        this.nom = nom;
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom= nom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public  void setEmail(String email) {
+        this.email = email;
+    }
 }
