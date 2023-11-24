@@ -89,11 +89,11 @@ public class Main {
         // Test du Pattern Strategy pour les frais de port
         System.out.println("******************************************************************************");
         System.out.println("\nTest Strategy Pattern pour les frais de port (Colissimo) :");
-        double frais = commande.calculerFraisDePort(new FraisPortColissimoStrategy(commande));
+        double frais = commande.calculerFraisDePort(new FraisPortColissimoStrategy(commande, livreRepository));
         System.out.println("Frais de port calculés: " + frais+"€");
         // Affichage attendu : Frais de port calculés: 5.0€
         System.out.println("\nTest Strategy Pattern pour les frais de port (Mondial Relay) :");
-        frais = commande.calculerFraisDePort(new FraisPortMondialRelayStrategy(commande));
+        frais = commande.calculerFraisDePort(new FraisPortMondialRelayStrategy(commande, livreRepository));
         System.out.println("Frais de port calculés: " + frais+"€");
         // Affichage attendu : Frais de port calculés: 4.0€
 
