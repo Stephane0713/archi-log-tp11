@@ -51,7 +51,6 @@ public class Utilisateur implements Entity {
     }
 
     public UtilisateurDTO toDTO() {
-        // TODO a coder
-        return null;
+        return new UtilisateurDTO(this);
     }
 }

@@ -1,5 +1,6 @@
 package tp11.dto;
 
+import tp11.Utilisateur;
 
 /********************************************************
  * Les DTO sont des objets simplifi�s repr�sentant l'�tat
@@ -11,23 +12,13 @@ public class UtilisateurDTO  implements TransferableObject{
     // A vous de d�finir les attributs, le constructeur et les getters/setters
     // n'oubliez pas : aucune logique m�tier ici !!
 
-    private int id;
     private String nom;
     private String email;
 
 
-    public UtilisateurDTO(int id, String nom, String email){
-        this.id = id;
-        this.nom = nom;
-        this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public UtilisateurDTO(Utilisateur utilisateur){
+        this.nom = utilisateur.getNom();
+        this.email = utilisateur.getEmail();
     }
 
     public String getNom() {
