@@ -8,6 +8,7 @@ import tp11.strategy.FraisPortStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /******************************************************************
  * Il s'agit d'une entité (voir pattern DTO), autrement dit
@@ -22,6 +23,13 @@ public class Commande implements Entity {
     private String status;
     private CommandeState currentState = null ; // état actuel de la commande
     private double fraisDePort ;
+    private LivreRepository livreRepository;
+
+    // constructeur
+    public Commande() {
+        this.status = "Nouvelle";
+        this.currentState = null;
+    }
 
 
     // TODO à vous d'écrire les getters/setters, le(s) constructeur(s) et tout ce dont vous aurez besoin notamment pour le lazy loading
@@ -65,13 +73,9 @@ public class Commande implements Entity {
         this.currentState = currentState;
     }
 
-    public Commande() {
-        this.status = "Nouvelle";
-    }
-
     // Attributs liés au LazyLoading
     private List<Integer> livreIds = new ArrayList<>();
-    private transient List<Livre> livres; // Chargé à la demande
+    private transient List<Livre> livres;
 
     /**
      * Dans cette implémentation, addLivreId() ajoute simplement l'ID d'un livre à la liste livreIds. Lorsque getLivres()
@@ -115,8 +119,7 @@ public class Commande implements Entity {
     }
     public CommandeDTO toDTO() {
         // TODO à coder
-        CommandeDTO dto = new CommandeDTO(this);
-       return dto;
-        }
+        return new CommandeDTO(this, livreRepository);
+    }
 
 }

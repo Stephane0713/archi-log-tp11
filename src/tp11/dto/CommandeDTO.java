@@ -3,7 +3,9 @@ import tp11.Commande;
 import tp11.Livre;
 import tp11.repository.LivreRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /********************************************************
@@ -24,10 +26,13 @@ public class CommandeDTO implements TransferableObject{
     public CommandeDTO(Commande commande, LivreRepository livreRepository) {
         this.id = commande.getId();
         this.fraisDePort = commande.getFraisDePort();
+        this.status = commande.getStatus();
         this.utilisateur = commande.getUtilisateur().toDTO();
-        this.livres = commande.getLivres(livreRepository).stream().map< Livre >((livre)->livre.toDTO());
-
+        this.livres = commande.getLivres(livreRepository).stream()
+                .map(Livre::toDTO)
+                .collect(Collectors.toList());
     }
+
     // Getters et Setters
     public int getId() {
         return id;
