@@ -36,11 +36,12 @@ public class FraisPortColissimoStrategy implements FraisPortStrategy {
         }
 
         if (poidsTotal <= 1) {
-            return 3;
+            contexte.setFraisDePort(3);
         } else if (poidsTotal <= 3) {
-            return 5;
+            contexte.setFraisDePort(5);
         } else {
-            return 15;
+            contexte.setFraisDePort(15);
         }
+        return contexte.getFraisDePort();
     }
 }
