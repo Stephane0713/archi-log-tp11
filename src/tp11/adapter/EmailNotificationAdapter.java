@@ -22,8 +22,15 @@ public class EmailNotificationAdapter implements NotificationService {
 
     @Override
     public void envoyerNotification(CommandeDTO commande) {
-        // A vous de coder cette méthode pour obtenir très exactement le résultat attendu dans le Main
-        // tout en utilisant emailService.
-        // Bien sûr, si la commande change, le résultat doit s'adapter.
+        String userEmail = commande.getUtilisateur().getEmail();
+        String subject = "Notification de commande";
+        StringBuilder builder = new StringBuilder().append("Votre commande ").append(commande.getId())
+                .append(" vient de passer dans l'état : ").append(commande.getStatus()).append("\n")
+                .append("Récapitulatif de la commande : \n")
+                .append("Frais de port : ").append(commande.getFraisDePort()).append("€").append("\n");
+        commande.getLivres().forEach(livre -> builder.append("• ").append(livre.getTitre()).append("\n"));
+
+        String body = builder.toString();
+        emailService.envoyerEmail(userEmail, subject, body);
     }
 }
