@@ -3,6 +3,7 @@ package tp11;
 import tp11.dto.CommandeDTO;
 import tp11.dto.Entity;
 import tp11.repository.LivreRepository;
+import tp11.state.CommandeNouvelle;
 import tp11.state.CommandeState;
 import tp11.strategy.FraisPortStrategy;
 
@@ -20,8 +21,8 @@ public class Commande implements Entity {
     private int id;
     private Utilisateur utilisateur;
     private String status;
-    private CommandeState currentState = null ; // état actuel de la commande
-    private double fraisDePort ;
+    private CommandeState currentState = null; // état actuel de la commande
+    private double fraisDePort;
 
 
     // TODO à vous d'écrire les getters/setters, le(s) constructeur(s) et tout ce dont vous aurez besoin notamment pour le lazy loading
@@ -66,7 +67,8 @@ public class Commande implements Entity {
     }
 
     public Commande() {
-        this.status = "Nouvelle";
+        this.status = "Commande créée";
+        this.currentState = new CommandeNouvelle();
     }
 
     // Attributs liés au LazyLoading
@@ -82,6 +84,7 @@ public class Commande implements Entity {
         // TODO à coder
         livreIds.add(livreId);
     }
+
     public List<Livre> getLivres(LivreRepository repo) {
         // TODO à coder
         if (livres == null) {
@@ -99,24 +102,23 @@ public class Commande implements Entity {
 
 
     // Pattern Strategy
-    public double calculerFraisDePort(FraisPortStrategy strategy)
-    {
+    public double calculerFraisDePort(FraisPortStrategy strategy) {
         // TODO à coder
         return strategy.calculerFraisPort();
     }
 
     // Pattern State
-    public void etatSuivant()
-    {
+    public void etatSuivant() {
         // TODO à coder
         if (currentState != null) {
             currentState.next(this);
         }
     }
+
     public CommandeDTO toDTO() {
         // TODO à coder
         CommandeDTO dto = new CommandeDTO();
-       return dto;
-        }
+        return dto;
+    }
 
 }
