@@ -4,13 +4,14 @@ package tp11.state;
 import tp11.Commande;
 
 /**
- * Etat représentant la commande nouvellement créée.
- * Son état suivant est : En cours
+ * Etat reprï¿½sentant la commande nouvellement crï¿½ï¿½e.
+ * Son ï¿½tat suivant est : En cours
  */
 public class CommandeNouvelle implements CommandeState {
 
     @Override
     public void next(Commande commande) {
+        commande.setStatus("Commande crÃ©Ã©e");
         commande.setCurrentState(new CommandeEnCours());
     }
 }

@@ -37,9 +37,10 @@ public class FraisPortMondialRelayStrategy implements FraisPortStrategy {
         }
 
         if (poidsTotal <= 3) {
-            return 4;
+            contexte.setFraisDePort(4);
         } else {
-            return 8;
+            contexte.setFraisDePort(8);
         }
+        return contexte.getFraisDePort();
     }
 }

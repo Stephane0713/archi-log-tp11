@@ -3,6 +3,7 @@ package tp11;
 import tp11.dto.CommandeDTO;
 import tp11.dto.Entity;
 import tp11.repository.LivreRepository;
+import tp11.state.CommandeEnCours;
 import tp11.state.CommandeNouvelle;
 import tp11.state.CommandeState;
 import tp11.strategy.FraisPortStrategy;
@@ -27,8 +28,8 @@ public class Commande implements Entity {
 
     // constructeur
     public Commande() {
-        this.status = "Nouvelle";
-        this.currentState = null;
+        this.status = "Commande créée";
+        this.currentState = new CommandeEnCours();
     }
 
     // TODO à vous d'écrire les getters/setters, le(s) constructeur(s) et tout ce dont vous aurez besoin notamment pour le lazy loading
