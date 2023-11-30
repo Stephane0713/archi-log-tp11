@@ -21,9 +21,8 @@ public class Commande implements Entity {
     private int id;
     private Utilisateur utilisateur;
     private String status;
-    private CommandeState currentState = null ; // état actuel de la commande
-    private double fraisDePort ;
-    private LivreRepository livreRepository;
+    private CommandeState currentState = null; // état actuel de la commande
+    private double fraisDePort;
 
     // constructeur
     public Commande() {
@@ -119,7 +118,7 @@ public class Commande implements Entity {
     }
     public CommandeDTO toDTO() {
         // TODO à coder
-        return new CommandeDTO(this, livreRepository);
+        return new CommandeDTO(id, fraisDePort, status, utilisateur.toDTO(), livres.stream().map(Livre::toDTO).toList());
     }
 
 }
